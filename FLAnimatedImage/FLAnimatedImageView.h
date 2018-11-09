@@ -25,6 +25,7 @@
 // And vice versa, setting `animatedImage` will initially populate the `[UIImageView.image]` to its `posterImage` and then start animating and hold `currentFrame`.
 @property (nonatomic, strong) FLAnimatedImage *animatedImage;
 @property (nonatomic, copy) void(^loopCompletionBlock)(NSUInteger loopCountRemaining);
+@property (nonatomic, copy) void(^didRefresh)(NSUInteger currentFrameIndex, NSTimeInterval accumulator);
 
 @property (nonatomic, strong, readonly) UIImage *currentFrame;
 @property (nonatomic, assign, readonly) NSUInteger currentFrameIndex;
@@ -32,5 +33,7 @@
 // The animation runloop mode. Enables playback during scrolling by allowing timer events (i.e. animation) with NSRunLoopCommonModes.
 // To keep scrolling smooth on single-core devices such as iPhone 3GS/4 and iPod Touch 4th gen, the default run loop mode is NSDefaultRunLoopMode. Otherwise, the default is NSDefaultRunLoopMode.
 @property (nonatomic, copy) NSString *runLoopMode;
+
++ (void)setPosition(NSUInteger frameIndex, NSTimeInterval accumulator);
 
 @end

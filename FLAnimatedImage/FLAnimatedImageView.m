@@ -133,6 +133,11 @@
     }
 }
 
++ (void)setPosition(NSUInteger frameIndex, NSTimeInterval accumulator)
+{
+    self.currentFrameIndex = frameIndex;
+    self.accumulator = accumulator;
+}
 
 #pragma mark - Life Cycle
 
@@ -421,6 +426,9 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
     } else {
         self.currentFrameIndex++;
     }
+
+    if (self.didRefresh)
+        self.didRefresh(self.currentFrameIndex, self.accumulator);
 }
 
 + (NSString *)defaultRunLoopMode
