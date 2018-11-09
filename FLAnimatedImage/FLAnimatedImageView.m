@@ -287,7 +287,6 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
     }
 }
 
-
 - (void)startAnimating
 {
     if (self.animatedImage) {
@@ -309,6 +308,9 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
         self.displayLink.frameInterval = MAX([self frameDelayGreatestCommonDivisor] * kDisplayRefreshRate, 1);
 
         self.displayLink.paused = NO;
+        if (self.willAnimate) {
+            self.willAnimate();
+        }
     } else {
         [super startAnimating];
     }
@@ -427,8 +429,9 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
         self.currentFrameIndex++;
     }
 
-    if (self.didRefresh)
+    if (self.didRefresh) {
         self.didRefresh(self.currentFrameIndex, self.accumulator);
+    }
 }
 
 + (NSString *)defaultRunLoopMode
