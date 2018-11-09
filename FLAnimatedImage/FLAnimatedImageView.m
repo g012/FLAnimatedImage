@@ -133,7 +133,7 @@
     }
 }
 
-+ (void)setPosition(NSUInteger frameIndex, NSTimeInterval accumulator)
+- (void)setPosition:(NSUInteger)frameIndex withOffset:(NSTimeInterval)accumulator
 {
     self.currentFrameIndex = frameIndex;
     self.accumulator = accumulator;
